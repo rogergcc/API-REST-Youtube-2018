@@ -24,7 +24,13 @@ function login(req,res){
                                 role: user.role
                             }
                             //Acceso
-                            jwt.sign(payload,CONFIG.SECRET_TOKEN,function(error,token){
+                            
+                            // Token signing options
+                            var signOptions = {
+                                expiresIn:  60,    // 30 s
+                            };
+
+                            jwt.sign(payload,CONFIG.SECRET_TOKEN,signOptions,function(error,token){
                                 if(error){
                                     res.status(500).send({error});
                                 }else{
@@ -45,4 +51,22 @@ function login(req,res){
         });
 }
 
+
+// 3. Logout a user
+server.post('/logout', (_req, res) => {
+    res.clearCookie('refreshtoken', { path: '/refresh_token' });
+    // Logic here for also remove refreshtoken from db
+    return res.send({
+      message: 'Logged out',
+    });
+  });
+
+  
+function logout(req,res){
+    let username = req.body.username;
+    let password = req.body.password;
+    //jwt.verify
+
+}
 module.exports = login;
+module.exports = logout;
