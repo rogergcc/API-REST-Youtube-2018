@@ -53,20 +53,26 @@ function login(req,res){
 
 
 // 3. Logout a user
-server.post('/logout', (_req, res) => {
-    res.clearCookie('refreshtoken', { path: '/refresh_token' });
-    // Logic here for also remove refreshtoken from db
-    return res.send({
-      message: 'Logged out',
-    });
-  });
+
+// server.post('/logout', (_req, res) => {
+//     res.clearCookie('refreshtoken', { path: '/refresh_token' });
+//     // Logic here for also remove refreshtoken from db
+//     return res.send({
+//       message: 'Logged out',
+//     });
+//   });
 
   
-function logout(req,res){
-    let username = req.body.username;
-    let password = req.body.password;
-    //jwt.verify
+// function logout(req,res){
+//     let username = req.body.username;
+//     let password = req.body.password;
+//     //jwt.verify
 
-}
+// }
 module.exports = login;
-module.exports = logout;
+// //module.exports = logout;
+
+// module.exports = {
+//     login,
+//     logout
+// };
